@@ -1,0 +1,16 @@
+# Mac system files
+.DS_Store
+
+# Node, npm & yarn files
+node_modules
+yarn-error.log
+npm-debug.log
+
+# Application development folders
+coverage
+docs
+plato/*
+!plato/report*
+
+# Test Data
+tests/data/*
