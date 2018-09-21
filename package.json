@@ -1,0 +1,44 @@
+{
+  "name": "cassandra-sandbox",
+  "version": "1.0.0",
+  "description": "Sandbox app to play with Cassandra and a bit of docker for development",
+  "main": "app/index.js",
+  "author": "James Leffler",
+  "license": "MIT",
+  "scripts": {
+    "start": "nvm use 8 && npm run db:start && concurrently --names \"lint,docs,tests,db\" -c \"blue.bold,magenta.bold,yellow.bold,white.bold\" \"npm:lint:watch\" \"npm:docs:watch\" \"npm:test:watch\" \"npm:db:logs\"",
+    "dev:open": "open coverage/lcov-report/index.html http://localhost:4001",
+    "lint": "eslint app/** utils/**/*.js",
+    "lint:fix": "eslint --fix app/** utils/**/*.js",
+    "lint:watch": "esw -w -f simple-detail app/** utils/**/*.js",
+    "pretty": "prettier --write \"{app,utils}/**/*.js\"",
+    "plato": "plato -r -d plato -e .eslintrc.json app",
+    "docs": "documentation build app/** -f html -o docs",
+    "docs:lint": "documentation lint app/**",
+    "docs:md": "documentation build app/** -f md -o docs.md",
+    "docs:watch": "documentation serve --watch app/**",
+    "test": "jest",
+    "test:watch": "jest --watch --coverage",
+    "test:coverage": "jest --coverage",
+    "test:data": "./utils/bin/testData",
+    "db:start": "./database/database.sh start",
+    "db:stop": "./database/database.sh stop",
+    "db:restart": "./database/database.sh restart",
+    "db:logs": "./database/database.sh logs"
+  },
+  "dependencies": {
+    "cassandra-driver": "^3.5.0"
+  },
+  "devDependencies": {
+    "concurrently": "^4.0.1",
+    "documentation": "^8.1.2",
+    "eslint": "^5.5.0",
+    "eslint-watch": "4.0.2",
+    "jest": "^23.6.0",
+    "plato": "1.7.0",
+    "prettier": "1.14.2"
+  },
+  "engines": {
+    "node": "8.12.0"
+  }
+}
