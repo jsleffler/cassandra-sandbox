@@ -40,3 +40,9 @@ then
   echo "Stopping docker image ${IMAGE_NAME}"
   docker stop $IMAGE_NAME
 fi
+
+if [ "$1" = "logs"]
+then
+  echo "Trailing logs from ${IMAGE_NAME}"
+  docker logs -f $IMAGE_NAME
+fi
