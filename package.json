@@ -6,7 +6,7 @@
   "author": "James Leffler",
   "license": "MIT",
   "scripts": {
-    "start": "nvm use 8 && npm run db:start && concurrently --names \"lint,docs,tests,db\" -c \"blue.bold,magenta.bold,yellow.bold,white.bold\" \"npm:lint:watch\" \"npm:docs:watch\" \"npm:test:watch\" \"npm:db:logs\"",
+    "start:dev": "nvm use 8 && npm run db:start && concurrently --names \"lint,docs,tests,db\" -c \"blue.bold,magenta.bold,yellow.bold,white.bold\" \"npm:lint:watch\" \"npm:docs:watch\" \"npm:test:watch\" \"npm:db:logs\"",
     "dev:open": "open coverage/lcov-report/index.html http://localhost:4001",
     "lint": "eslint app/** utils/**/*.js",
     "lint:fix": "eslint --fix app/** utils/**/*.js",
