@@ -1,0 +1,34 @@
+version: "2"
+
+networks:
+  cassandra_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.10.0/24
+
+services:
+
+  cassandra1:
+    container_name: cassandra1
+    image: cassandra:latest
+    # Volumes are relative to where docker-compose command is run from (TBC)
+    volumes:
+      - ./volumes/cassandra1:/var/lib/cassandra
+    # Set the IP address of the first database
+    networks:
+      cassandra_network:
+        ipv4_address: 172.20.10.4
+
+  cassandra2:
+    container_name: cassandra2
+    image: cassandra:latest
+    # Volumes are relative to where docker-compose command is run from (TBC)
+    volumes:
+      - ./volumes/cassandra2:/var/lib/cassandra
+    environment:
+      - "CASSANDRA_SEEDS=172.20.10.4"
+    # Set the IP address of the second database
+    networks:
+      cassandra_network:
+        ipv4_address: 172.20.10.5
